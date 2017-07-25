@@ -1,13 +1,15 @@
-node {
-    try {
-        stage ('Staging') {
-            sh "echo 'Deploy to Staging'"
-        }
-        stage ('PreProduction') {
-            sh "echo 'Deploy to PreProduction'"
-        }
-    } catch (err) {
-        currentBuild.result = 'FAILED'
-        throw err
+pipeline {
+  agent any
+  stages {
+    stage('Test') {
+      steps {
+        sh 'echo \'Test\''
+      }
     }
+    stage('Staging') {
+      steps {
+        sh 'echo \'Deploying Staging\''
+      }
+    }
+  }
 }
